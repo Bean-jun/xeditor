@@ -9,7 +9,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "vue": "^3.2.37"
+    "less": "^4.3.0",
+    "less-loader": "^12.2.0",
+    "vue": "^3.2.37",
+    "vue-router": "^4.5.1"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^3.0.3",
