@@ -12,7 +12,7 @@ type FK struct {
 	ctx context.Context
 }
 
-func (a *FK) Init(ctx context.Context) {
+func (a *FK) init(ctx context.Context) {
 	a.ctx = ctx
 }
 
@@ -35,7 +35,7 @@ func NewApp() *App {
 // so we can call the runtime methods
 func (a *App) Startup(ctx context.Context) {
 	a.ctx = ctx
-	a.FK.Init(a.ctx)
+	a.FK.init(a.ctx)
 }
 
 // Greet returns a greeting for the given name

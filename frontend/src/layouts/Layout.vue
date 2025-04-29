@@ -1,6 +1,6 @@
 <template>
     <header>
-        <Header/>
+        <Header />
     </header>
 
     <body>
@@ -8,7 +8,6 @@
     </body>
 
     <footer>
-        <h1>footer</h1>
     </footer>
 </template>
 
@@ -17,5 +16,7 @@ import Header from '../components/header/Header.vue';
 </script>
 
 <style lang="less" scoped>
-
+body {
+    height: 100%;
+}
 </style>

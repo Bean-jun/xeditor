@@ -9,13 +9,16 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "frontend": "file:",
     "less": "^4.3.0",
     "less-loader": "^12.2.0",
+    "monaco-editor": "^0.52.2",
     "vue": "^3.2.37",
     "vue-router": "^4.5.1"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^3.0.3",
-    "vite": "^3.0.7"
+    "vite": "^3.0.7",
+    "vite-plugin-monaco-editor-esm": "^2.0.2"
   }
 }
