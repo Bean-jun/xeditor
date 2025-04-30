@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "element-plus": "^2.9.9",
     "frontend": "file:",
     "less": "^4.3.0",
     "less-loader": "^12.2.0",

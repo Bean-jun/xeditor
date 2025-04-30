@@ -5,11 +5,10 @@
 </template>
 
 <script setup>
-import { ref, watch } from "vue";
+import { ref, reactive, onMounted } from "vue";
 import MonacoEditor from "../components/editor/MonacoEditor.vue";
 
 const code = ref("import sys\n\nprint(sys)");
-
 </script>
 
 <style lang="less" scoped>

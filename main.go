@@ -4,6 +4,7 @@ import (
 	"embed"
 	"log"
 	"xeditor/app"
+	"xeditor/app/controller"
 
 	"github.com/wailsapp/wails/v2"
 	"github.com/wailsapp/wails/v2/pkg/options"
@@ -16,6 +17,7 @@ var assets embed.FS
 func main() {
 	// Create an instance of the app structure
 	App := app.NewApp()
+	PythonController := controller.NewPythonController(App)
 
 	// Create application with options
 	err := wails.Run(&options.App{
@@ -28,9 +30,10 @@ func main() {
 		OnStartup: App.Startup,
 		Bind: []interface{}{
 			App,
+			PythonController,
 		},
 		Frameless: true,
-		Debug:     options.Debug{OpenInspectorOnStartup: true},
+		// Debug:     options.Debug{OpenInspectorOnStartup: true},
 	})
 
 	if err != nil {
