@@ -5,3 +5,15 @@
 export function GetInterpreterList() {
   return window['go']['controller']['PythonController']['GetInterpreterList']();
 }
+
+export function InstallInterpreter(arg1) {
+  return window['go']['controller']['PythonController']['InstallInterpreter'](arg1);
+}
+
+export function SetInterpreter(arg1) {
+  return window['go']['controller']['PythonController']['SetInterpreter'](arg1);
+}
+
+export function UnInstallInterpreter(arg1) {
+  return window['go']['controller']['PythonController']['UnInstallInterpreter'](arg1);
+}

@@ -1,11 +1,9 @@
 package interpreter
 
 import (
-	"bytes"
 	_ "embed"
 	"log"
 	"os"
-	"os/exec"
 	"path/filepath"
 	"strings"
 	"xeditor/app/utils"
@@ -38,16 +36,7 @@ func NewPythonInterpreter() *PythonInterpreter {
 }
 
 func (p *PythonInterpreter) ExecuteCmd(args ...string) (string, string, error) {
-	var b bytes.Buffer
-	var c bytes.Buffer
-	cmd := exec.Command(p.UVExecutable, args...)
-	cmd.Stdout = &b
-	cmd.Stderr = &c
-	err := cmd.Run()
-	if err != nil {
-		return "", "", err
-	}
-	return b.String(), c.String(), nil
+	return utils.ExecuteCmdNoWindow(p.UVExecutable, args...)
 }
 
 func (p *PythonInterpreter) GetAllInterpreterList() ([]string, error) {
@@ -97,6 +86,14 @@ func (p *PythonInterpreter) InstallInterpreter(interpreter string) error {
 		return err
 	}
 	_, _, err = p.ExecuteCmd("python", "install", interpreter)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (p *PythonInterpreter) UnInstallInterpreter(interpreter string) error {
+	_, _, err := p.ExecuteCmd("python", "uninstall", interpreter)
 	if err != nil {
 		return err
 	}

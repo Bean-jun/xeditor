@@ -25,9 +25,11 @@
       </el-table-column>
       <el-table-column fixed="right" label="操作" min-width="150">
         <template #default="scope">
-          <el-button size="small" type="danger" v-if="scope.row.install">卸载</el-button size="samil">
-          <el-button size="small" type="success" v-else>安装</el-button>
-          <el-button type="success" size="small">设置默认</el-button>
+          <el-button size="small" type="danger" v-if="scope.row.install" @click="uninstallInterpreter(scope.row.name)">卸载</el-button size="samil">
+          <el-button size="small" type="success" v-else @click="installInterpreter(scope.row.name)">安装</el-button>
+
+          <el-button type="success" size="small" v-if="!scope.row.current" @click="setInterpreterTodefault(scope.row.name)">设置默认</el-button>
+          <el-button type="success" size="small" v-else disabled>设置默认</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -60,10 +62,15 @@ import {
   WindowToggleMaximise,
   Quit,
 } from "../../../wailsjs/runtime";
-import { GetInterpreterList } from "../../../wailsjs/go/controller/PythonController";
+import { GetInterpreterList, InstallInterpreter , SetInterpreter, UnInstallInterpreter } from "../../../wailsjs/go/controller/PythonController";
 
 
-const gridData = ref([]);
+const gridData = ref(null);
+
+/**
+ * getInterpreter
+ * 获取解释器相关信息
+ */
 function getInterpreter() {
   GetInterpreterList().then((e) => {
     const list = []
@@ -78,6 +85,39 @@ function getInterpreter() {
     }
   }
   )
+}
+
+/**
+ * installInterpreter
+ * 安装指定版本解释器
+ */
+function installInterpreter(version){
+  InstallInterpreter(version).then(e=>{
+    alert(`安装版本${version}成功${e}`)
+    getInterpreter()
+  })
+}
+
+/**
+ * uninstallInterpreter
+ * 卸载指定版本解释器
+ */
+function uninstallInterpreter(version){
+  UnInstallInterpreter(version).then(e=>{
+    alert(`卸载版本${version}成功${e}`)
+    getInterpreter()
+  })
+}
+
+/**
+ * setInterpreterTodefault
+ * 设置指定版本解释器为默认解释器
+ */
+function setInterpreterTodefault(version){
+  SetInterpreter(version).then(e=>{
+    alert(`这是默认版本${version}成功${e}`)
+    getInterpreter()
+  })
 }
 
 const commonOperation = [

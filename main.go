@@ -33,7 +33,7 @@ func main() {
 			PythonController,
 		},
 		Frameless: true,
-		// Debug:     options.Debug{OpenInspectorOnStartup: true},
+		Debug:     options.Debug{OpenInspectorOnStartup: true},
 	})
 
 	if err != nil {
